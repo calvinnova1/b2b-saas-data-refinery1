@@ -37,12 +37,12 @@ app.include_router(stream_router, prefix="/v1")
 async def startup_event():
     """Initialize database tables on startup."""
     try:
-        logger.info("Initializing database tables...")
+        logger.info(f"Initializing database with URL: {settings.database_url[:50]}...")
         await init_db()
-        logger.info("Database initialization complete")
+        logger.info("✓ Database initialization complete")
     except Exception as e:
-        logger.error(f"Database initialization failed: {e}", exc_info=True)
-        # Don't crash on startup if DB is temporarily unavailable
+        logger.warning(f"⚠ Database initialization failed (non-fatal): {e}")
+        logger.info("  App will still work for /health and /docs endpoints")
 
 
 @app.get("/")
