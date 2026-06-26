@@ -1,0 +1,12 @@
+-r requirements.txt
+
+pytest>=8.2
+pytest-asyncio>=0.23
+respx>=0.21          # mocking httpx requests in tests
+fakeredis>=2.23      # in-memory redis for tests
+
+black>=24.4
+ruff>=0.4
+mypy>=1.10
+
+pre-commit>=3.7
